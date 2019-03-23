@@ -1,10 +1,32 @@
 package com.zhi;
 
-import java.util.Arrays;
 
 public class Test {
     public static void main(String[] args) {
-        String[] words = {"i","heard","about","spark","and","i","love","spark"};
-        System.out.println(words[0].hashCode()%2000);
+        System.out.println(Subclass.value2);
     }
+
+}
+
+class MyClassLoader extends ClassLoader{
+    @Override
+    protected Class<?> findClass(String name) throws ClassNotFoundException {
+        return super.findClass(name);
+    }
+}
+
+class SuperClass {
+    static {
+        System.out.println("Superclass init!");
+    }
+
+    public static int value = 123;
+}
+
+class Subclass extends SuperClass {
+    static {
+        System.out.println("Subclass init");
+    }
+
+    public static final int value2 = 234;
 }
